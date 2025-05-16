@@ -87,6 +87,8 @@ else
     make -j
     sudo make -j install
     cd ../
+    echo "Cleaning up wolfSSL build directory..."
+    rm -rf wolfssl/
 fi
 
 if [ ! -d "gnutls" ]; then
