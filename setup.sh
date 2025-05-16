@@ -81,11 +81,11 @@ else
 
     cd ./wolfssl
     ./autogen.sh
+    ./async-check.sh install
+    ./configure --prefix=/opt/wolfssl/ CC=clang --with-intelqa=/root/qat/ --enable-asynccrypt --enable-cmac --enable-ed25519 --enable-ed448 --enable-curve25519 --enable-curve448 --enable-aesccm --enable-aesxts --enable-aescfb --enable-keygen --enable-shake128 --enable-shake256 'CFLAGS=-DWOLFSSL_PUBLIC_ASN -DHAVE_FFDHE_3072 -DHAVE_FFDHE_4096 -DWOLFSSL_DH_EXTRA'
 
-    ./configure --prefix=/opt/wolfssl/ CC=clang --enable-cmac --enable-ed25519 --enable-ed448 --enable-curve25519 --enable-curve448 --enable-aesccm --enable-aesxts --enable-aescfb --enable-keygen --enable-shake128 --enable-shake256 'CFLAGS=-DWOLFSSL_PUBLIC_ASN -DHAVE_FFDHE_3072 -DHAVE_FFDHE_4096 -DWOLFSSL_DH_EXTRA'
-
-    make
-    sudo make install
+    make -j
+    sudo make -j install
     cd ../
 fi
 
@@ -139,7 +139,7 @@ else
 
     ./configure $CONFIG_OPTS 'CFLAGS=-DGNUTLS_WOLFSSL'
 
-    make -j9
+    make -j
 fi
 
 sudo make install
